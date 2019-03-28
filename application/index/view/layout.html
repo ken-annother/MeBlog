@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>我的博客</title>
+    <meta name="keywords" content="博客网站" />
+    <meta name="description" content="这是宋坤的博客网站" />
+    <!--移动设备优先-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lt IE 9]>
+    <script>window.location.href= "{:url('base/ieerror')}";</script>
+    <![endif]-->
+    <link rel="stylesheet" href="home_css/bootstrap.min.css" />
+    <link rel="stylesheet" href="home_css/my.css" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1077643_pcp8jg4wshl.css">
+    <script src="home_js/jquery-3.3.1.min.js" ></script>
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/index.html">
+                <img class="navbar-brand" src="home_img/brand.png" alt="Sunking 博客"/>
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">首页</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">文章分类<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">C++</a></li>
+                        <li><a href="#">Java</a></li>
+                        <li><a href="#">Android</a></li>
+                    </ul>
+                </li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">留言板</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="center-content col-md-8">{block name="center-content"}中心区的内容{/block}</div>
+            <div class="sidebar visible-md visible-lg col-md-4">{block name="sidebar"}侧边栏的内容{/block}</div>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <span>©2017-2019 Sunking技术博客 版权所有 | 京ICP备13023945号</span>
+</div>
+
+</body>
+<script src="home_js/bootstrap.min.js"></script>
+</html>

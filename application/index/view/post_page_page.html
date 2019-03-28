@@ -1,0 +1,18 @@
+{extend name="layout"}
+{block name="center-content"}
+    <div class="breadcrumb">
+        <a href="/index.html">首页</a> > <a href="#">灵异故事</a> > <a href="#">文章正文</a>
+    </div>
+
+    <div class="card post-detail">
+        <div class="title">{$post.post_title}</div>
+        <div class="min-title"><i class="iconfont icon-time"> </i><span class="date">{$post.post_post_time}</span></div>
+        <div class="main-body">{$post.post_content}</div>
+    </div>
+{/block}
+
+{block name="sidebar"}
+    <div class="card">
+        这里是侧边栏
+    </div>
+{/block}

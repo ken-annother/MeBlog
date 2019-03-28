@@ -1,0 +1,122 @@
+h1 {
+    font-size: 2rem;
+}
+
+h2, h3 {
+    font-size: 1.5rem;
+}
+
+body {
+    background-image: url("../img/body.jpg");
+}
+
+.navbar-default{
+    background-color: rgba(255,255,255,0.8);
+}
+
+.navbar-brand{
+    padding: 10px;
+}
+
+#content {
+    margin-top: 7rem;
+}
+
+#content .container {
+    position: relative;
+    min-height: 30rem;
+}
+
+#content .container .center-content {
+    min-height: 100rem;
+}
+
+.card {
+    padding: 1rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 1px 3px rgba(26, 26, 26, .2);
+    background-color: #FFFFFF;
+}
+
+.center-content .post-item {
+    margin-bottom: 2rem;
+}
+
+.center-content .post-item .title {
+    font-size: 120%;
+    font-weight: bold;
+    padding: 1rem 0rem;
+}
+
+span.is-top {
+    border-radius: 0.3rem;
+    font-size: 60%;
+    padding: 0.4rem;
+    margin: 0 0.4rem;
+    color: white;
+    background-color: #25C6FC;
+}
+
+.center-content .post-item .breviary {
+    padding: 0 1rem;
+}
+
+.center-content .post-item .breviary a {
+    color: #666666;
+    pointer-events: none;
+}
+
+.center-content .post-item .foot-info {
+    color: #888888;
+    position: relative;
+    height: 2rem;
+    vertical-align: middle;
+    margin-top: 1rem;
+}
+
+.foot-info .right {
+    position: relative;
+    float: right;
+}
+
+.foot-info .left {
+    position: relative;
+    float: left;
+}
+
+.sidebar .card {
+    margin-bottom: 1.8rem;
+    height: 200px;
+}
+
+.sidebar .hot ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar .hot section p {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+
+#footer {
+    position: relative;
+    height: 10rem;
+    text-align: center;
+    background-color: #252d38;
+    color: #888b98;
+}
+
+#footer span {
+    padding: 2rem 0;
+    display: block;
+}
+
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0.2rem 1rem;
+    color: #888;
+}
