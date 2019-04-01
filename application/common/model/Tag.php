@@ -5,7 +5,7 @@
  * Time: 15:51
  */
 
-namespace app\index\model;
+namespace app\common\model;
 use \think\Model;
 
 class Tag extends Model

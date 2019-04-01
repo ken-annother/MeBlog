@@ -1,9 +1,11 @@
-$(function(){
-
-    $('#summernote').summernote({
-	height: ($(window).height() - 440),
-	toolbar: [
-	    ['style', ['style']],
+$(function () {
+    var note  = $('#summernote');
+    note.summernote({
+        lang: 'zh-CN',
+        height: ($(window).height() - 440),
+        focus: true,
+        toolbar: [
+            ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'clear']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
@@ -12,11 +14,6 @@ $(function(){
             ['insert', ['link', 'picture', 'hr']],
             ['view', ['fullscreen', 'codeview']]
         ]
-
-
-
-
-
     });
-    
 });
+

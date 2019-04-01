@@ -8,7 +8,7 @@
 namespace app\index\controller;
 
 
-use app\index\model\Post;
+use app\common\model\Post;
 
 class PostPage extends Base
 {

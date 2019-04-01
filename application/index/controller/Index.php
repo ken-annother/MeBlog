@@ -1,9 +1,9 @@
 <?php
 namespace app\index\controller;
 
-use app\index\model\Category;
-use app\index\model\Post;
-use app\index\model\Tag;
+use app\common\model\Category;
+use app\common\model\Post;
+use app\common\model\Tag;
 
 class Index extends Base
 {

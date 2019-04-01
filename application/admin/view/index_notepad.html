@@ -1,21 +1,112 @@
 {extend name="admin_layout"}
 
+{block name="headerExtend"}
+<style>
+    #drop-articl-cat {
+        text-decoration: none;
+    }
+
+    .edittool {
+        margin-top: 12px;
+    }
+</style>
+{/block}
+
+
 {block name="center-content"}
 <div class="container-fluid">
     <div class="panel panel-default">
-        <div class="panel-heading">New article</div>
+        <div class="panel-heading">新建文章</div>
         <div class="panel-body">
             <div class="form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" placeholder="Enter title">
+                <label>标题</label>
+                <input id="post-title" type="text" class="form-control" placeholder="输入标题">
             </div>
-            <label>Content</label>
+
+            <label>正文</label>
             <div id="summernote"></div>
-            <div class="form-group text-right" style="margin-top:20px">
-                <button type="submit" class="btn btn-default">Save Draft</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+
+            <div class="container" style="margin-top:20px">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="articl-cat edittool">
+                            <span>文章分类:</span>
+                            <div class="dropup" style="display: inline-block; margin-left: 12px">
+                                <a id="drop-articl-cat" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   role="button" aria-expanded="true"> 未分类 <span class="caret"></span> </a>
+                                <ul id="menu-articl-cat" class="dropdown-menu" role="menu"
+                                    aria-labelledby="drop-articl-cat">
+
+                                    {volist name='cates' id='cate'}
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)"
+                                                               onclick="selectCate({$cate['cate_id']},'{$cate['cate_name']}')">{$cate['cate_name']}</a>
+                                    </li>
+                                    {/volist}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-8 text-right edittool">
+                        <button type="submit" class="btn btn-default" onclick="saveDraft()">保存草稿</button>
+                        <button type="submit" class="btn btn-primary" onclick="publish()">发表</button>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </div>
 </div>
+{/block}
+
+
+{block name="footExtend"}
+<script src="admin_js/summernote.min.js"></script>
+<script src="admin_js/sumernote-zh.js"></script>
+<script src="admin_js/site/notepad.js"></script>
+
+<script>
+    selectedCatId = 1;
+
+    function selectCate(cateId, cateName) {
+        selectedCatId = cateId;
+        $("#drop-articl-cat").html(cateName + "<span class=\"caret\"></span> ");
+    }
+
+    function saveDraft() {
+        sendAjax(1, $('#post-title').val(), $('#summernote').code(), selectedCatId);
+
+    }
+
+    function publish() {
+        sendAjax(0, $('#post-title').val(), $('#summernote').code(), selectedCatId);
+    }
+
+
+    function sendAjax(status, title, content, cate) {
+        if (!title) {
+            $.toast({text: "标题不能为空", position: 'mid-center', hideAfter: 800, allowToastClose: false,})
+            return;
+        }
+
+        if (!content) {
+            $.toast({text: "正文不能为空", position: 'mid-center', hideAfter: 800, allowToastClose: false,})
+            return;
+        }
+
+        // console.log(status,title,content,cate)
+        $.post(
+            "/notepad/new",
+            {status: status, title: title, content: content, cate: cate},
+            function (result) {
+                if(result.code === 200){
+                    $.toast({text: "发表成功", position: 'mid-center', hideAfter: 800, allowToastClose: false,})
+                    setTimeout("location.reload()",800);
+                }
+            }
+        );
+    }
+</script>
 {/block}
