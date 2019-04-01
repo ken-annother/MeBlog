@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 use \think\Route;
 
+Route::rule("l", "admin/index/phpinfo");
 Route::rule("login$", "admin/login/index");
 Route::rule("admin$", "admin/index/index");
 Route::rule("notepad$", "admin/index/notepad");

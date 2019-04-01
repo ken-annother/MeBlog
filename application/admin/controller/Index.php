@@ -12,6 +12,11 @@ use app\common\model\Category;
 
 class Index extends Base
 {
+    public function phpinfo()
+    {
+        return phpinfo();
+    }
+
     public function index()
     {
         return $this->fetch();
