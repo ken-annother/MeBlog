@@ -8,10 +8,13 @@
 namespace app\admin\controller;
 
 
+use app\common\model\User;
+use app\common\util\ResponsUtil;
 use think\Config;
 use think\Controller;
 use think\Request;
 use think\Session;
+use \Firebase\JWT\JWT;
 
 class Gt3 extends Controller
 {
@@ -51,16 +54,38 @@ class Gt3 extends Controller
         if (Session::get('gtserver')== 1) {   //服务器正常
             $result = $GtSdk->success_validate($request->param('geetest_challenge'), $request->param('geetest_validate'), $request->param('geetest_seccode'), $data);
             if ($result) {
-                echo '{"status":"success"}';
+                return $this->validateLogin($request);
             } else {
-                echo '{"status":"fail"}';
+                return ResponsUtil::error("fail");
             }
         } else {  //服务器宕机,走failback模式
             if ($GtSdk->fail_validate($request->param('geetest_challenge'),$request->param('geetest_validate'),$request->param('geetest_seccode'))) {
-                echo '{"status":"success"}';
+                return $this->validateLogin($request);
             } else {
-                echo '{"status":"fail"}';
+                return ResponsUtil::error("fail");
             }
         }
+    }
+
+    private function validateLogin($request){
+        $email = $request->param('email');
+        $password = $request->param('password');
+        $rememberme = $request->cookie('rememberme');
+
+        if(empty($rememberme)){
+            $rememberme = 0;
+        }
+
+        if(empty($username) || empty($password)){
+            return ResponsUtil::error("用户名和密码不能为空");
+        }
+
+        $user = new User();
+        $cursor = $user->where('email',$email)->find();
+        if(empty($cursor) || $password != $cursor['password']){
+            return ResponsUtil::error("用户名或密码错误");
+        }
+
+
     }
 }

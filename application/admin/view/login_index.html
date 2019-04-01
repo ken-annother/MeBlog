@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -97,21 +97,39 @@
         }
 
         @-webkit-keyframes loadingFade {
-            0% { opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0; }
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+            }
         }
 
         @-moz-keyframes loadingFade {
-            0% { opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0; }
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+            }
         }
 
         @keyframes loadingFade {
-            0% { opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0; }
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -127,7 +145,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-fw fa-envelope"></i></div>
-                    <input type="email" name="email" class="form-control" placeholder="邮箱">
+                    <input id="email-account" type="email" name="email" class="form-control" placeholder="邮箱">
                 </div>
             </div>
             <div class="form-group">
@@ -155,7 +173,7 @@
 
 
         <div class="col-xs-6">
-            <div class="checkbox"><label><input type="checkbox" name="rememberme">记住我</label></div>
+            <div class="checkbox"><label><input type="checkbox" name="rememberme" value="1">记住我</label></div>
         </div>
 
         <div class="col-xs-6">
@@ -168,11 +186,19 @@
 <script src="admin_js/md5.js"></script>
 <script src="admin_js/gt.js"></script>
 <script>
-    $(function(){
-        $("#password-explicit").blur(function(){
+    $(function () {
+        $("#password-explicit").blur(function () {
             var before = $(this).val();
             var beforeVal = hex_md5(before);
             $("#password").val(beforeVal);
+        });
+
+        $("input[name='rememberme']").change(function () {
+            if ($(this).is(':checked')) {
+                document.cookie="rememberme=1";
+            }else{
+                document.cookie="rememberme=0";
+            }
         });
     });
 
@@ -195,8 +221,8 @@
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    username: $('#username2').val(),
-                    password: $('#password2').val(),
+                    email: $('#email-account').val(),
+                    password: $('#password').val(),
                     geetest_challenge: result.geetest_challenge,
                     geetest_validate: result.geetest_validate,
                     geetest_seccode: result.geetest_seccode

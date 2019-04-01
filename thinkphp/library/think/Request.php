@@ -102,7 +102,7 @@ class Request
         'atom'  => 'application/atom+xml',
         'pdf'   => 'application/pdf',
         'text'  => 'text/plain',
-        'image' => 'image/img,image/jpg,image/jpeg,image/pjpeg,image/gif,image/webp,image/*',
+        'image' => 'image/png,image/jpg,image/jpeg,image/pjpeg,image/gif,image/webp,image/*',
         'csv'   => 'text/csv',
         'html'  => 'text/html,application/xhtml+xml,*/*',
     ];
