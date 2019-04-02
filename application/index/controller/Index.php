@@ -33,7 +33,6 @@ class Index extends Base
     public function cate($cate_id)
     {
         $post = new Post();
-
         $posts = $post->where('post_status', '=', '0')
             ->where('post_type', '=', '0')
             ->where('post_cate_id', '=', $cate_id)
@@ -42,6 +41,7 @@ class Index extends Base
             ->select();
 
         $this->assign("posts", $posts);
-        return $this->fetch("index");
+        $this->assign("cate_name", request()->cate_map[$cate_id]);
+        return $this->fetch();
     }
 }
