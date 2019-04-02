@@ -28,4 +28,5 @@ return [
 		'index' => 'index/index',
 		'page/:post_id$' => 'post_page/index',
 		'cate/:cate_id$' => 'index/cate',
+         'leave' => 'leave/index',
 ];
