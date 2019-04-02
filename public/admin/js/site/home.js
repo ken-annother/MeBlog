@@ -1,30 +1,20 @@
-$(function(){
+function clearCookie(name) {
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval = getCookie(name);
+    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+}
 
-    var btn_cc = 'btn-primary';
-    var navbar_cc = 'cm-navbar-primary';
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
 
+}
 
-    $('#demo-buttons button').click(function(){
-	var color = $(this).data('switch-color');
-	$('.cm-navbar').removeClass(navbar_cc);
-	navbar_cc = 'cm-navbar-' + color;
-	$('.cm-navbar').addClass(navbar_cc);
-	$('.cm-navbar .btn').removeClass(btn_cc);
-	btn_cc = 'btn-' + color;
-	$('.cm-navbar .btn').addClass(btn_cc);
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
+function clearTKCookie() {
+    clearCookie("tk")
+    clearCookie("PHPSESSID")
+}

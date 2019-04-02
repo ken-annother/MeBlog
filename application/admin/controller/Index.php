@@ -12,6 +12,11 @@ use app\common\model\Category;
 
 class Index extends Base
 {
+    protected $beforeActionList = [
+        'checkAuth',
+//        'checkAuth' => ['only' => 'checkAuth'],
+    ];
+
     public function phpinfo()
     {
         return phpinfo();

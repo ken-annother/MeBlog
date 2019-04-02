@@ -34,14 +34,14 @@
         <div id="cm-menu-items-wrapper">
             <div id="cm-menu-scroller">
                 <ul class="cm-menu-items">
-                    <li><a href="dashboard-sales.html" class="sf-dashboard">看板</a></li>
+                    <li><a href="#" class="sf-dashboard">看板</a></li>
                     <li><a href="notepad.html" class="sf-notepad">写博客</a></li>
                     <li class="cm-submenu">
                         <a class="sf-cat">博客管理 <span class="caret"></span></a>
                         <ul>
-                            <li class="active"><a href="ico-sf.html">博客列表</a></li>
-                            <li><a href="ico-md.html">分类管理</a></li>
-                            <li><a href="ico-fa.html">标签管理</a></li>
+                            <li class="active"><a href="#">博客列表</a></li>
+                            <li><a href="#">分类管理</a></li>
+                            <li><a href="#">标签管理</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -90,7 +90,7 @@
             <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
             <ul class="dropdown-menu">
                 <li class="disabled text-center">
-                    <a style="cursor:default;"><strong>John Smith</strong></a>
+                    <a style="cursor:default;"><strong>{$Request.user['email']}</strong></a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -100,7 +100,7 @@
                     <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
                 </li>
                 <li>
-                    <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                    <a href="/login.html" onclick="clearTKCookie()"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
                 </li>
             </ul>
         </div>

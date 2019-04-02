@@ -8,13 +8,16 @@
 namespace app\admin\controller;
 
 use app\common\model\Post;
-
 use app\common\util\ResponsUtil;
-use app\common\util\TextUtil;
 use think\Request;
 
 class Article extends Base
 {
+    protected $beforeActionList = [
+        'checkAuth' => ['only' => 'checkAuth'],
+    ];
+
+
     public function create()
     {
         $request = Request::instance();
