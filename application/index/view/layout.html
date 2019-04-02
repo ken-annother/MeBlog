@@ -2,19 +2,19 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <title>我的博客</title>
-    <meta name="keywords" content="博客网站" />
-    <meta name="description" content="这是宋坤的博客网站" />
+    <title>Sunking博客</title>
+    <meta name="keywords" content="Sunking,nicekun,技术，android, 个人网站博客"/>
+    <meta name="description" content="Sunking的个人博客网站，交流技术。"/>
     <!--移动设备优先-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--[if lt IE 9]>
-    <script>window.location.href= "{:url('base/ieerror')}";</script>
+    <script>window.location.href = "{:url('base/ieerror')}";</script>
     <![endif]-->
-    <link rel="stylesheet" href="home_css/bootstrap.min.css" />
-    <link rel="stylesheet" href="home_css/my.css" />
+    <link rel="stylesheet" href="home_css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="home_css/my.css"/>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1077643_pcp8jg4wshl.css">
-    <script src="home_js/jquery-3.3.1.min.js" ></script>
+    <script src="home_js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 
@@ -22,7 +22,8 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -36,10 +37,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/index.html">首页</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">文章分类<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">文章分类<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         {volist name="cate_map" id="vo"}
-                            <li><a href="/cate/{$vo.cate_id}">{$vo.cate_name}</a></li>
+                        <li><a href="/cate/{$vo.cate_id}">{$vo.cate_name}</a></li>
                         {/volist}
                     </ul>
                 </li>
