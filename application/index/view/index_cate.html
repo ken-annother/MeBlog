@@ -2,7 +2,7 @@
 {block name="center-content"}
     {volist name='posts' id='post'}
         <div class="card post-item">
-            <div class="title">{eq name="post.post_istop" value="1"}<span class="is-top">置顶</span>{/eq}<a href="page/{$post.post_id}.html">{$post.post_title}</a></div>
+            <div class="title"><a href="page/{$post.post_id}.html">{$post.post_title}</a></div>
             <div class="breviary">{$post.post_intro}</div>
             <div class="foot-info">
                 <div class="left">

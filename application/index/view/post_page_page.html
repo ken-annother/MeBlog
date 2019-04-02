@@ -1,7 +1,7 @@
 {extend name="layout"}
 {block name="center-content"}
     <div class="breadcrumb">
-        <a href="/index.html">首页</a> > <a href="#">灵异故事</a> > <a href="#">文章正文</a>
+        <a href="/index.html">首页</a> > <a href="/cate/{$post.cate_id}">{$post.cate_name}</a> >文章正文
     </div>
 
     <div class="card post-detail">
