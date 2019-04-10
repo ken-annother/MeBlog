@@ -57,7 +57,7 @@ class Article extends Base
             "post_content" => $content,
             "post_intro" => mb_substr($desc, 0, 300),
             "post_post_time" => floatval($postTime) / 1000,
-            "post_update_time" => floatval($postTime) / 1000,
+            "post_update_time" => time(),
             "post_meta" => $content,
             "post_istop" => $isTop,
             "post_tags" => $tags,
