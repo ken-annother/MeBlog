@@ -40,7 +40,7 @@ class Index extends Base
             }
         }
 
-        array_push($cat_map, $tmp);
+        array_unshift($cat_map, $tmp);
         $this->assign("cates", $cat_map);
         return $this->fetch();
     }

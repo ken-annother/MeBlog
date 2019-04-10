@@ -26,6 +26,14 @@ class Article extends Base
         $content = $request->param("content");
         $cate = $request->param("cate");
 
+        $isTop = 0;
+        if($request->param("isTop") && $request->param("isTop") == 'true'){
+            $isTop = 1;
+        }
+
+        $tags = $request->param("tags");
+        $postTime = $request->param("postTime");
+
         if (empty($cate)) {
             $cate = 1;
         }
@@ -48,9 +56,11 @@ class Article extends Base
             "post_title" => $title,
             "post_content" => $content,
             "post_intro" => mb_substr($desc, 0, 300),
-            "post_post_time" => time(),
-            "post_update_time" => time(),
+            "post_post_time" => floatval($postTime) / 1000,
+            "post_update_time" => floatval($postTime) / 1000,
             "post_meta" => $content,
+            "post_istop" => $isTop,
+            "post_tags" => $tags,
         ];
 
         $post->insert($data);
