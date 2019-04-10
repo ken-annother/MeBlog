@@ -148,10 +148,10 @@ return [
     			'home_js'      =>  '/static/js',
                 'home_img'      =>  '/static/img',
 
-                'admin_css'      =>  '/admin/css',
-                'admin_js'      =>  '/admin/js',
-                'admin_fonts'      =>  '/admin/fonts',
-                'admin_img'      =>  '/admin/img',
+                'admin_css'      =>  '/static/admin/css',
+                'admin_js'      =>  '/static/admin/js',
+                'admin_fonts'      =>  '/static/admin/fonts',
+                'admin_img'      =>  '/static/admin/img',
     ],
     
     // 默认跳转页面对应的模板文件

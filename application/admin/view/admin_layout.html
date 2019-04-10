@@ -21,7 +21,7 @@
             margin: 8px 12px;
         }
     </style>
-
+    {assign name="cmmenuactive" value="none" /}
     {block name="headerExtend"}头扩展区{/block}
 </head>
 <body class="cm-no-transition cm-1-navbar">
@@ -35,11 +35,11 @@
             <div id="cm-menu-scroller">
                 <ul class="cm-menu-items">
                     <li><a href="#" class="sf-dashboard">看板</a></li>
-                    <li><a href="notepad.html" class="sf-notepad">写文章</a></li>
-                    <li><a href="#" class="sf-folder">文章</a></li>
-                    <li><a href="#" class="sf-tag">标签</a></li>
-                    <li><a href="#" class="sf-pin">分类</a></li>
-                    <li class="cm-submenu">
+                    <li class='{eq name="cmmenuactive" value="notepad"}active{/eq}'><a href="/admin/notepad.html" class="sf-notepad">写文章</a></li>
+                    <li class='{eq name="cmmenuactive" value="article"}active{/eq}'><a href="/admin/article.html" class="sf-folder">文章</a></li>
+                    <li class='{eq name="cmmenuactive" value="tag"}active{/eq}'><a href="#" class="sf-tag">标签</a></li>
+                    <li class='{eq name="cmmenuactive" value="cate"}active{/eq}'><a href="#" class="sf-pin">分类</a></li>
+                    <li class='cm-submenu {eq name="cmmenuactive" value="face"}active{/eq}'>
                         <a class="sf-cat">外观 <span class="caret"></span></a>
                         <ul>
                             <li class="active"><a href="#">侧边栏</a></li>
@@ -47,7 +47,7 @@
                             <li><a href="#">模版</a></li>
                         </ul>
                     </li>
-                    <li class="cm-submenu">
+                    <li class='cm-submenu {eq name="cmmenuactive" value="system"}active{/eq}'>
                         <a class="sf-cog">系统 <span class="caret"></span></a>
                         <ul>
                             <li class="active"><a href="#">设置</a></li>

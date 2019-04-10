@@ -44,4 +44,9 @@ class Index extends Base
         $this->assign("cates", $cat_map);
         return $this->fetch();
     }
+
+
+    public function article(){
+        return $this->fetch();
+    }
 }

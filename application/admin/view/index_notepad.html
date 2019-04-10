@@ -1,6 +1,7 @@
 {extend name="admin_layout"}
 
 {block name="headerExtend"}
+{assign name="cmmenuactive" value="notepad" /}
 <style>
     .edittool {
         margin-top: 12px;
@@ -115,7 +116,7 @@
 
         // console.log(status,title,content,cate)
         $.post(
-            "/notepad/new",
+            "/admin/notepad/new",
             {status: status, title: title, content: content, cate: cate, isTop: isTop, tags: tags, postTime: postTime.getTime()},
             function (result) {
                 if (result.code === 200) {
