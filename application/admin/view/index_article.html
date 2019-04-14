@@ -3,6 +3,12 @@
 {block name="headerExtend"}
 {assign name="cmmenuactive" value="article" /}
 
+<style>
+    .tool-editor-bar, .post-list {
+        margin-top: 2rem;
+    }
+</style>
+
 {/block}
 
 
@@ -11,14 +17,89 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <ul class="nav nav-tabs">
-                <li role="presentation" ><a href="#">文章管理</a></li>
-                <li role="presentation" class="active"><a href="#">草稿管理</a></li>
+                <li role="presentation" class='{neq name="Think.get.c" value="dm"}active{/neq}'><a
+                        href="/admin/article.html">文章管理</a></li>
+                <li role="presentation" class='{eq name="Think.get.c" value="dm"}active{/eq}'><a
+                        href="/admin/article.html?c=dm">草稿管理</a></li>
             </ul>
 
-            <div >
+            <div class="tool-editor-bar row">
+                <div class="col-md-2">
+                    <select class="form-control">
+                        <option>全部</option>
+                        {volist name="cate" id="vo"}
+                        <option value="{$vo.cate_id}">{$vo.cate_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+
+                <div class="col-md-1">
+                    <a href="#">按标签查看</a>
+                </div>
+
+                <div class="col-md-3 col-md-offset-6">
+                    <input type="text" class="form-control" placeholder="搜索文章">
+                </div>
 
             </div>
 
+            <div class="table-responsive">
+                <table class="post-list table table-bordered table-hover">
+                    <tr>
+                        <th colspan="2">标题</th>
+                        <th>编辑</th>
+                        <th>分类</th>
+                        <th>时间</th>
+                        <th>评论</th>
+                        <th>阅读</th>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>欢迎使用emlog</td>
+                        <td>@</td>
+                        <td>未分类</td>
+                        <td>2019-04-09 18:00</td>
+                        <td>100</td>
+                        <td>900</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>欢迎使用emlog欢迎迎欢迎使用emlog<br/>欢迎迎使用emlog欢迎使用emlog欢迎迎使用<br/>emlog欢迎使用emlog欢迎迎使用emlog<br/>欢迎使用emlog欢迎迎使用emlog使用emlog
+                        </td>
+                        <td>@</td>
+                        <td>未分类</td>
+                        <td>2019-04-09 18:00</td>
+                        <td>100</td>
+                        <td>900</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
+                <a href="javascript:logact('del');" class="care">删除</a> |
+                <a href="javascript:logact('hide');">放入草稿箱</a> |
+
+                <select name="top" id="top" class="form-control"
+                        style="display: inline-block; width: 120px;margin-left: 10px">
+                    <option value="" selected="selected">置顶操作...</option>
+                    <option value="top">首页置顶</option>
+                    <option value="sortop">分类置顶</option>
+                    <option value="notop">取消置顶</option>
+                </select>
+
+                <select name="sort" id="sort" class="form-control"
+                        style="display: inline-block; width: 120px; margin-left: 10px">
+                    <option value="" selected="selected">移动到分类...</option>
+                    <option value="1">ertrt</option>
+                    <option value="-1">未分类</option>
+                </select>
+            </div>
+
+            <div>
+                <div>(有2篇文章)</div>
+            </div>
         </div>
     </div>
 </div>

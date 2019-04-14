@@ -8,6 +8,7 @@
 namespace app\admin\controller;
 
 use app\common\model\Category;
+use think\Request;
 
 
 class Index extends Base
@@ -47,6 +48,16 @@ class Index extends Base
 
 
     public function article(){
+        $request = Request::instance();
+
+        $cats = Category::all();
+        $cate_map = array();
+        foreach ($cats as $cat){
+            $cate_map[$cat['cate_id']] = $cat['cate_name'];
+        }
+
+        $this->assign("cate_map", $cate_map);
+        $this->assign("cate", $cats);
         return $this->fetch();
     }
 }
