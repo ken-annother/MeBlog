@@ -6,12 +6,13 @@
  */
 
 namespace app\common\model;
+
 use \think\Model;
 
 class Post extends Model
 {
-    public function getPostPostTimeAttr($value)
+    public function getPostPostTimeShortAttr($value, $data)
     {
-        return date("Y-m-d",$value);
+        return date("Y-m-d", $data['post_post_time']);
     }
 }

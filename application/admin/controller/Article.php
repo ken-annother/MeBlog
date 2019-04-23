@@ -14,7 +14,7 @@ use think\Request;
 class Article extends Base
 {
     protected $beforeActionList = [
-        'checkAuth' => ['only' => 'checkAuth'],
+        'checkAuth',
     ];
 
 
@@ -27,12 +27,15 @@ class Article extends Base
         $cate = $request->param("cate");
 
         $isTop = 0;
-        if($request->param("isTop") && $request->param("isTop") == 'true'){
+        if ($request->param("isTop") && $request->param("isTop") == 'true') {
             $isTop = 1;
         }
 
         $tags = $request->param("tags");
         $postTime = $request->param("postTime");
+        if (empty($postTime)) {
+            $postTime = time() * 1000;
+        }
 
         if (empty($cate)) {
             $cate = 1;
@@ -66,5 +69,96 @@ class Article extends Base
         $post->insert($data);
 
         return ResponsUtil::success("修改完成");
+    }
+
+
+    public function manage()
+    {
+        $request = Request::instance();
+        $action = $request->param("action");
+        $items = explode(",", $request->param("items"));
+        switch ($action) {
+            case "del":   //删除文章，丢到回收站
+                $this->deletePosts($items);
+                break;
+
+            case "publish":   //发布
+                $this->publishPosts($items);
+                break;
+
+            case "draft":   //移动到草稿箱
+                $this->draftPosts($items);
+                break;
+
+            case "top":  //置顶
+                $this->topPosts($items);
+                break;
+
+            case "untop":  //取消置顶
+                $this->untopPosts($items);
+                break;
+
+            case "cate":    //移动到某个分类
+                $cateId = $request->param("cateId");
+                if(empty($cateId)){
+                    return ResponsUtil::error("参数错误");
+                }else{
+                    $this->moveCate($items,intval($cateId));
+                }
+
+                break;
+
+            default:        //未定义
+
+                break;
+        }
+
+        return ResponsUtil::success("修改完成");
+    }
+
+
+    /**
+     * 将文章删除到回收站
+     * @param array $items
+     */
+    private function deletePosts(array $items)
+    {
+        $post = new Post();
+        $post->whereIn("post_id", $items)->update(['post_status' => 2]);
+    }
+
+    private function publishPosts(array $items)
+    {
+        $post = new Post();
+        $post->whereIn("post_id", $items)->update(['post_status' => 0]);
+    }
+
+    private function draftPosts(array $items)
+    {
+        $post = new Post();
+        $post->whereIn("post_id", $items)->update(['post_status' => 1]);
+    }
+
+    private function topPosts(array $items)
+    {
+        $post = new Post();
+        $post->whereIn("post_id", $items)->update(['post_istop' => 1]);
+    }
+
+    private function untopPosts(array $items)
+    {
+        $post = new Post();
+        $post->whereIn("post_id", $items)->update(['post_istop' => 0]);
+    }
+
+    /**
+     * 移动到某个分类
+     * @param array $items
+     * @param $cateId
+     */
+    private function moveCate(array $items, $cateId)
+    {
+        $post = new Post();
+        $post->whereIn("post_id", $items)->update(['post_cate_id' => $cateId]);
     }
 }

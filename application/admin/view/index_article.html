@@ -25,80 +25,84 @@
 
             <div class="tool-editor-bar row">
                 <div class="col-md-2">
-                    <select class="form-control">
-                        <option>全部</option>
+                    <select id="cat-select" class="form-control">
+                        <option value="0">全部</option>
                         {volist name="cate" id="vo"}
-                        <option value="{$vo.cate_id}">{$vo.cate_name}</option>
+                        <option value="{$vo.cate_id}" {eq name="Think.get.t" value="$vo.cate_id" }selected="selected"{/eq}>{$vo.cate_name}</option>
                         {/volist}
                     </select>
                 </div>
 
-                <div class="col-md-1">
-                    <a href="#">按标签查看</a>
+                <div class="col-md-2">
+                    <a href="#" style="display:inline-block;padding: 8px">按标签查看</a>
                 </div>
 
-                <div class="col-md-3 col-md-offset-6">
+                <div class="col-md-3 col-md-offset-5">
                     <input type="text" class="form-control" placeholder="搜索文章">
                 </div>
 
             </div>
 
-            <div class="table-responsive">
+            <div class="table-responsive" style="margin-top: 12px">
                 <table class="post-list table table-bordered table-hover">
                     <tr>
                         <th colspan="2">标题</th>
-                        <th>编辑</th>
+                        <th style="text-align:center;vertical-align:middle;">编辑|置顶</th>
                         <th>分类</th>
                         <th>时间</th>
                         <th>评论</th>
                         <th>阅读</th>
                     </tr>
 
+                    {volist name="post_list" id="post"}
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>欢迎使用emlog</td>
-                        <td>@</td>
-                        <td>未分类</td>
-                        <td>2019-04-09 18:00</td>
-                        <td>100</td>
-                        <td>900</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>欢迎使用emlog欢迎迎欢迎使用emlog<br/>欢迎迎使用emlog欢迎使用emlog欢迎迎使用<br/>emlog欢迎使用emlog欢迎迎使用emlog<br/>欢迎使用emlog欢迎迎使用emlog使用emlog
+                        <td><input type="checkbox" value="{$post.post_id}" class="post-selected-incator"></td>
+                        <td class="title-col" style="max-width: 200px;min-width: 200px;white-space: normal;word-break: break-all;word-wrap: break-word"><a href="/page/{$post.post_id}.html" style="color: #333333" target="_blank">{$post.post_title}</a></td>
+                        <td style="text-align:center;vertical-align:middle;">
+                            <a href="/admin/edit/{$post.post_id}">
+                                <i class="fa fa-fw"></i>
+                            </a>
+                             <a href="javascript:void(0);" style="margin-left: 3px">
+                                 {if condition="$post.post_istop eq 0"}<i class="fa fa-fw" onclick="logact('top',{$post.post_id});"></i>
+                                 {else/}<i class="fa fa-fw" onclick="logact('untop',{$post.post_id});"></i>
+                                 {/if}
+                             </a>
                         </td>
-                        <td>@</td>
-                        <td>未分类</td>
-                        <td>2019-04-09 18:00</td>
-                        <td>100</td>
-                        <td>900</td>
+                        <td>{$cate_map[$post.post_cate_id]}</td>
+                        <td>{$post.post_post_time|date='Y-m-d H:i',###}</td>
+                        <td>{$post.post_comm_nums}</td>
+                        <td>{$post.post_view_nums}</td>
                     </tr>
+                    {/volist}
                 </table>
             </div>
 
             <div>
-                <a href="javascript:void(0);" id="select_all">全选</a> 选中项：
+                <a href="javascript:void(0);" id="select_all">全选</a>
+                <a href="javascript:void(0);" id="unselect_all" style="margin-left: 8px">取消全选</a>
+                <label style="margin-left: 12px">选中项：</label>
                 <a href="javascript:logact('del');" class="care">删除</a> |
-                <a href="javascript:logact('hide');">放入草稿箱</a> |
+                {neq name="Think.get.c" value="dm"}<a href="javascript:logact('hide');">放入草稿箱</a> |{/neq}
+                {eq name="Think.get.c" value="dm"}<a href="javascript:logact('post');">发布</a>{/eq}
 
-                <select name="top" id="top" class="form-control"
+                <select name="top" id="top-select-action" class="form-control"
                         style="display: inline-block; width: 120px;margin-left: 10px">
-                    <option value="" selected="selected">置顶操作...</option>
-                    <option value="top">首页置顶</option>
-                    <option value="sortop">分类置顶</option>
-                    <option value="notop">取消置顶</option>
+                    <option value="0" selected="selected">置顶操作...</option>
+                    <option value="1">首页置顶</option>
+                    <option value="2">取消置顶</option>
                 </select>
 
-                <select name="sort" id="sort" class="form-control"
+                <select name="sort" id="move-cate" class="form-control"
                         style="display: inline-block; width: 120px; margin-left: 10px">
                     <option value="" selected="selected">移动到分类...</option>
-                    <option value="1">ertrt</option>
-                    <option value="-1">未分类</option>
+                    {volist name="cate" id="vo"}
+                    <option value="{$vo.cate_id}">{$vo.cate_name}</option>
+                    {/volist}
                 </select>
             </div>
 
             <div>
-                <div>(有2篇文章)</div>
+                <div id="ddddd">(有2篇文章)</div>
             </div>
         </div>
     </div>
@@ -107,5 +111,158 @@
 
 
 {block name="footExtend"}
+
+<script>
+    $(function () {
+        $('#cat-select').on('change', function () {
+            var selected_cat = $("#cat-select option:selected").attr("value");
+            // console.log("选择的属性值为:" + selected_cat);
+            var searchUrlNew = "";
+            if (location.search === "") {
+                searchUrlNew = "?t=" + selected_cat;
+            } else {
+                searchUrlNew = replaceOrAddParam(location.search, "t", selected_cat, 0);
+            }
+
+            console.log("new query str is :" + searchUrlNew);
+            location.href = location.pathname + searchUrlNew + location.hash;
+        });
+        
+        $('#select_all').on('click',function () {
+            $(".post-selected-incator").each(function () {
+                $(this).prop("checked",true);
+            })
+        })
+
+        $('#unselect_all').on('click',function () {
+            $(".post-selected-incator").each(function () {
+                $(this).prop("checked",false);
+            })
+        })
+
+        $('#top-select-action').on("change",function () {
+            var actioncode = $("#top-select-action").val();
+            switch (actioncode) {
+                case '0': //不动作
+                    break;
+                case '1': //首页置顶
+                    logact('top');
+                    break;
+                case '2':
+                    logact('untop');
+                    break
+            };
+        });
+
+        $('#move-cate').on("change",function () {
+            var actioncode = $("#move-cate").val();
+            logact('movecate',actioncode);
+        });
+    });
+
+
+    function replaceOrAddParam(searhQuery, key, value, deleteValue) {
+        var regx = new RegExp("([?&]?" + key + "=)(\\S+)(?:&|#|\\b)");
+        if (regx.test(searhQuery)) {  //包含有
+            return searhQuery.replace(regx, function (src, oldkey, oldvalue) {
+                if (value == deleteValue) {
+                    return "";
+                } else {
+                    return oldkey + value;
+                }
+            });
+        } else {
+            return searhQuery + "&" + key + "=" + value;
+        }
+    }
+
+
+    function logact(actionName, extra) {
+        // console.log(actionName + "=>" + postId);
+        var scrolltop = true;
+
+        var selectedItems;
+        if(extra !== undefined && actionName !== 'movecate'){
+            selectedItems = [extra];
+        }else{
+            selectedItems = getAllSelectedItem();
+        }
+
+        var data = {};
+
+        var  action;
+        switch (actionName) {
+            case "del":
+                action = "del";
+                // console.log("执行删除啦");
+                break;
+
+            case "hide": //放入草稿箱
+                action = "draft";
+                // console.log("放入草稿箱");
+                break;
+
+            case "post": //发布
+                action = "publish";
+                // console.log("发布");
+                break;
+            case "top":
+                action = "top";
+                scrolltop = false;
+                break;
+            case "untop":
+                action = "untop";
+                scrolltop = false;
+                break;
+            case "movecate":
+                data.cateId = extra;
+                action = "cate";
+
+                break;
+        }
+
+        if(action === undefined || selectedItems.length === 0){
+            return;
+        }
+
+        data.action = action;
+        data.items =  selectedItems.join(",");
+
+        $.post(
+            "/admin/article/manage",
+            data,
+            function(result){
+                if(200 === result.code){
+                    $.toast({text: result.msg, position: 'mid-center', hideAfter: 400, allowToastClose: false,})
+                    setTimeout(function () {  //重新加载本页面，滑动到页面顶部
+                       location.reload();
+                       if(scrolltop){
+                           scrollTo(0,0);
+                       }
+                    },400)
+                }else{
+                    $.toast({text: result.msg, position: 'mid-center', hideAfter: 800, allowToastClose: false,})
+                }
+            },
+            "json"
+        );
+    }
+
+
+    /**
+     * 查询所有选择的文章
+     * @returns {Array}
+     */
+    function getAllSelectedItem() {
+        var selectedPostsId = [];
+        $(".post-selected-incator:checked").each(function () {
+            selectedPostsId.push($(this).val())
+        })
+
+        return selectedPostsId;
+    }
+
+</script>
+
 
 {/block}

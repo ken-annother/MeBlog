@@ -15,7 +15,8 @@ Route::rule("login$", "admin/login/index");
 Route::rule("admin$", "admin/index/index");
 Route::rule("admin/notepad$", "admin/index/notepad");
 Route::rule("admin/article$", "admin/index/article");
-Route::rule("admin/notepad/new", "admin/article/create","POST");
+Route::rule("admin/notepad/new$", "admin/article/create","POST");
+Route::rule("admin/article/manage$", "admin/article/manage","POST");
 
 Route::get("gt/register-slide", "admin/gt3/api1");
 Route::post("gt/register-slide", "admin/gt3/api2");
