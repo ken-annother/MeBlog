@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="admin_css/small-n-flat.css">
     <link rel="stylesheet" type="text/css" href="admin_css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="admin_css/jquery.toast.min.css">
-    <link rel="stylesheet" type="text/css" href="admin_css/summernote.css">
     <style>
         #cm-menu .cm-logo {
             background: none;
@@ -47,12 +46,12 @@
                             <li><a href="#">模版</a></li>
                         </ul>
                     </li>
-                    <li class='cm-submenu {eq name="cmmenuactive" value="system"}active{/eq}'>
-                        <a class="sf-cog">系统 <span class="caret"></span></a>
+                    <li class='cm-submenu {in name="cmmenuactive" value="setting,user,data"}open{/in}'>
+                        <a class='sf-cog'>系统 <span class="caret"></span></a>
                         <ul>
-                            <li class="active"><a href="#">设置</a></li>
-                            <li><a href="#">用户</a></li>
-                            <li><a href="#">数据</a></li>
+                            <li class='{eq name="cmmenuactive" value="setting"}active{/eq}'><a href="/admin/setting.html">设置</a></li>
+                            <li class='{eq name="cmmenuactive" value="user"}active{/eq}'><a href="#">用户</a></li>
+                            <li class='{eq name="cmmenuactive" value="data"}active{/eq}'><a href="#">数据</a></li>
                         </ul>
                     </li>
                 </ul>

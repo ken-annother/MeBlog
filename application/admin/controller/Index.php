@@ -82,4 +82,27 @@ class Index extends Base
 
         return $this->fetch();
     }
+
+
+    public function setting(){
+        return $this->fetch();
+    }
+
+
+    public function editpost(){
+        $cats = Category::all();
+        $cat_map = array();
+        $tmp = null;
+        foreach ($cats as $cat) {
+            if ($cat['cate_id'] == 1) {
+                $tmp = $cat;
+            } else {
+                array_push($cat_map, $cat);
+            }
+        }
+
+        array_unshift($cat_map, $tmp);
+        $this->assign("cates", $cat_map);
+        return $this->fetch("index_notepad");
+    }
 }

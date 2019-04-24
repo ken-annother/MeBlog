@@ -15,6 +15,8 @@ Route::rule("login$", "admin/login/index");
 Route::rule("admin$", "admin/index/index");
 Route::rule("admin/notepad$", "admin/index/notepad");
 Route::rule("admin/article$", "admin/index/article");
+Route::rule("admin/setting$", "admin/index/setting");
+Route::rule("admin/edit/:post_id$", "admin/index/editpost");
 Route::rule("admin/notepad/new$", "admin/article/create","POST");
 Route::rule("admin/article/manage$", "admin/article/manage","POST");
 
