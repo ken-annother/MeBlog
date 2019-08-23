@@ -1,50 +1,38 @@
 {extend name="layout"}
 {block name="center-content"}
 
-    <div class="breadcrumb">
-        <a href="/index.html">首页</a>  > {$cate_name} > 分类列表
-    </div>
+<div class="breadcrumb">
+    <a href="/index.html">首页</a> > {$cate_name} > 分类列表
+</div>
 
-    {volist name='posts' id='post'}
-        <div class="card post-item">
-            <div class="title"><a href="/page/{$post.post_id}.html">{$post.post_title}</a></div>
-            <div class="breviary">{$post.post_intro}</div>
-            <div class="foot-info">
-                <div class="left">
-                    <i class="iconfont icon-time"> </i><span class="date">{$post.post_post_time_short}</span>
-                    <i class="iconfont icon-folder" style="margin-left: 0.8rem"> </i><span class="tag">{$Request.cate_map[$post.post_cate_id]}</span>
-                </div>
-
-                <div class="right">
-                    <i class="iconfont icon-view"> </i><span class="views">{$post.post_view_nums}</span>
-                    <i class="iconfont icon-comment" style="margin-left: 0.8rem"> </i><span class="comment">{$post.post_comm_nums}</span>
-                </div>
-            </div>
+{volist name='posts' id='post'}
+<div class="card post-item">
+    <div class="title"><a href="/page/{$post.post_id}.html">{$post.post_title}</a></div>
+    <div class="breviary">{$post.post_intro}</div>
+    <div class="foot-info">
+        <div class="left">
+            <i class="iconfont icon-time"> </i><span class="date">{$post.post_post_time_short}</span>
+            <i class="iconfont icon-folder" style="margin-left: 0.8rem"> </i><span class="tag">{$Request.cate_map[$post.post_cate_id]}</span>
         </div>
-    {/volist}
+
+        <div class="right">
+            <i class="iconfont icon-view"> </i><span class="views">{$post.post_view_nums}</span>
+            <i class="iconfont icon-comment" style="margin-left: 0.8rem"> </i><span class="comment">{$post.post_comm_nums}</span>
+        </div>
+    </div>
+</div>
+{/volist}
 {/block}
 
 {block name="sidebar"}
-    <div class="card hot">
-        <section>
-            <p>热门文章</p>
-            <ul>
-                <li><span>1.</span><a href="#">奇怪的声音</a></li>
-                <li><span>2.</span><a href="#">奇怪的声音</a></li>
-                <li><span>3.</span><a href="#">奇怪的声音</a></li>
-                <li><span>4.</span><a href="#">奇怪的声音</a></li>
-                <li><span>5.</span><a href="#">奇怪的声音</a></li>
-                <li><span>6.</span><a href="#">奇怪的声音</a></li>
-                <li><span>7.</span><a href="#">奇怪的声音</a></li>
-            </ul>
-        </section>
-    </div>
-
-    <div class="card tags">
-
-    </div>
-
-    <div class="card leave">
-
-    </div>
+<div class="card hot">
+    <section>
+        <p>热门文章</p>
+        <ul>
+            {volist name='hot_posts' id='post' key="k"}
+            <li><span>{$k}.</span><a href="/page/{$post.post_id}.html">{$post.post_title}</a></li>
+            {/volist}
+        </ul>
+    </section>
+</div>
 {/block}

@@ -24,22 +24,10 @@
         <section>
             <p>热门文章</p>
             <ul>
-                <li><span>1.</span><a href="#">奇怪的声音</a></li>
-                <li><span>2.</span><a href="#">奇怪的声音</a></li>
-                <li><span>3.</span><a href="#">奇怪的声音</a></li>
-                <li><span>4.</span><a href="#">奇怪的声音</a></li>
-                <li><span>5.</span><a href="#">奇怪的声音</a></li>
-                <li><span>6.</span><a href="#">奇怪的声音</a></li>
-                <li><span>7.</span><a href="#">奇怪的声音</a></li>
+                {volist name='hot_posts' id='post' key="k"}
+                <li><span>{$k}.</span><a href="/page/{$post.post_id}.html">{$post.post_title}</a></li>
+                {/volist}
             </ul>
         </section>
-    </div>
-
-    <div class="card tags">
-
-    </div>
-
-    <div class="card leave">
-
     </div>
 {/block}
