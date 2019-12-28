@@ -28,4 +28,4 @@ jobs:
         FTP_USERNAME: ${{secrets.BCH_ACCOUNT}}
         FTP_PASSWORD: ${{secrets.BCH_PASSWORD}}
         LOCAL_DIR: FinalBuild
-        REMOTE_DIR: backup
+        REMOTE_DIR: webroot/packzip
