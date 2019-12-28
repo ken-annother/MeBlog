@@ -24,8 +24,8 @@ jobs:
     - name: Upload to BCH
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
-        FTP_SERVER: ${{BCH_ACCOUNT}}.ftp01.bcehost.com
-        FTP_USERNAME: ${{BCH_ACCOUNT}}
+        FTP_SERVER: ${{secrets.BCH_ACCOUNT}}.ftp01.bcehost.com
+        FTP_USERNAME: ${{secrets.BCH_ACCOUNT}}
         FTP_PASSWORD: ${{secrets.BCH_PASSWORD}}
         LOCAL_DIR: ../build
         REMOTE_DIR: backup
