@@ -27,5 +27,5 @@ jobs:
         FTP_SERVER: ${{secrets.BCH_ACCOUNT}}.ftp01.bcehost.com
         FTP_USERNAME: ${{secrets.BCH_ACCOUNT}}
         FTP_PASSWORD: ${{secrets.BCH_PASSWORD}}
-        LOCAL_DIR: ../build
+        LOCAL_DIR: FinalBuild
         REMOTE_DIR: backup

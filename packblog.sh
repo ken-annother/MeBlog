@@ -13,5 +13,6 @@ cat application/config.php
 rm -rf .git
 rm -rf .github
 
-mkdir ../build
-tar -zcf ../build/nkblog$(date "+%Y%m%d%H%M%S").tar.gz .
+mkdir ../FinalBuild
+tar -zcf ../FinalBuild/nkblog$(date "+%Y%m%d%H%M%S").tar.gz .
+mv ../FinalBuild ./
