@@ -9,4 +9,9 @@ sed -i s/"'app_trace' => true"/"'app_trace' => false"/ application/config.php
 
 cat application/database.php
 cat application/config.php
-tar -zcf ../nkblog.tar.gz .
+
+rm -rf .git
+rm -rf .github
+
+mkdir ../build
+tar -zcf ../build/nkblog$(date "+%Y%m%d%H%M%S").tar.gz .
