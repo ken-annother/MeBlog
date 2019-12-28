@@ -19,7 +19,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
     
     - name: Package 
-      run: pwd & ls -al && chmod a+x packblog.sh & bash packblog.sh ${{secrets.BCH_DB_ACCOUNT}} ${{secrets.BCH_PASSWORD}}
+      run: pwd & ls -al && chmod a+x packblog.sh & bash packblog.sh ${{secrets.BCH_DB_HOST}} ${{secrets.BCH_DB_ACCOUNT}} ${{secrets.BCH_PASSWORD}}
     
     - name: Upload to BCH
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
