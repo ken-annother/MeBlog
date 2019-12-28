@@ -19,9 +19,9 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
   
   deploy:
- 
+
     needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Package 
-      run: bash packblog.sh 
+      run: ls -al && chmod a+x packblog.sh & bash packblog.sh 
