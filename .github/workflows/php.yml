@@ -5,7 +5,7 @@ on:
     branches: site
 
 jobs:
-  build:
+  deploy:
 
     runs-on: ubuntu-latest
 
@@ -17,11 +17,6 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
-  
-  deploy:
-
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+    
     - name: Package 
       run: ls -al && chmod a+x packblog.sh & bash packblog.sh 
