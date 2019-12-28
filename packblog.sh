@@ -7,4 +7,6 @@ sed -i s/"'password'        => 'root'"/"'password'        => '$2'"/ application/
 sed -i s/"'app_debug' => true"/"'app_debug' => false"/ application/config.php
 sed -i s/"'app_trace' => true"/"'app_trace' => false"/ application/config.php
 
+cat application/database.php
+cat application/config.php
 tar -zcf ../nkblog.tar.gz .
