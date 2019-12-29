@@ -25,7 +25,7 @@
             <p>热门文章</p>
             <ul>
                 {volist name='hot_posts' id='post' key="k"}
-                <li><span>{$k}.</span><a href="/page/{$post.post_id}.html">{$post.post_title}</a></li>
+                <li><span class="count">{$k}.</span><a href="/page/{$post.post_id}.html">{$post.post_title}</a></li>
                 {/volist}
             </ul>
         </section>
