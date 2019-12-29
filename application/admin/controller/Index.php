@@ -89,7 +89,7 @@ class Index extends Base
     }
 
 
-    public function editpost(){
+    public function editpost($post_id){
         $cats = Category::all();
         $cat_map = array();
         $tmp = null;
@@ -103,6 +103,13 @@ class Index extends Base
 
         array_unshift($cat_map, $tmp);
         $this->assign("cates", $cat_map);
+        $this->assign("iseditpost", true);
+
+
+        $post = new Post();
+        $spost = $post->where("post_id", $post_id)->find();
+        $this->assign("spost", $spost);
+
         return $this->fetch("index_notepad");
     }
 }

@@ -19,16 +19,16 @@
 {block name="center-content"}
 <div class="container-fluid">
     <div class="panel panel-default">
-        <div class="panel-heading">写文章</div>
+        <div class="panel-heading">{$iseditpost? '编辑文章' : '写文章'}</div>
         <div class="panel-body row">
             <div class="col-md-8">
                 <div class="form-group">
                     <label>标题</label>
-                    <input id="post-title" type="text" class="form-control" placeholder="输入标题">
+                    <input id="post-title" type="text" class="form-control" placeholder="输入标题" value="{$spost? $spost['post_title'] :''}">
                 </div>
 
                 <label>正文</label>
-                <div id="summernote"></div>
+                <div id="summernote">{$spost? $spost['post_content'] :''}</div>
             </div>
 
             <div class="col-md-4">
@@ -43,7 +43,14 @@
                             <label>分类：</label>
                             <select id="publish-cat" class="form-control">
                                 {volist name='cates' id='cate'}
-                                <option value="{$cate['cate_id']}">{$cate['cate_name']}
+                                <option value="{$cate['cate_id']}"
+                                        {php}
+                                        if(isset($spost) && $cate['cate_id'] == $spost['post_cate_id']){
+                                            echo 'selected';
+                                        }
+                                        {/php}
+                                >
+                                {$cate['cate_name']}
                                 </option>
                                 {/volist}
                             </select>
