@@ -31,4 +31,4 @@ jobs:
         REMOTE_DIR: webroot/packzip
         
     - name: Trigger Deploy
-      run: apt install curl && chmod a+x publish.sh & bash publish.sh ${{secrets.DEPLOY_HOST}}
+      run: chmod a+x publish.sh & bash publish.sh ${{secrets.DEPLOY_HOST}}
