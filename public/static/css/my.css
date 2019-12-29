@@ -146,6 +146,8 @@ span.is-top {
 
 .post-detail .main-body {
     margin-top: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .post-detail .main-body img{

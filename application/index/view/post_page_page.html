@@ -6,7 +6,12 @@
 
     <div class="card post-detail">
         <div class="title">{$post.post_title}</div>
-        <div class="min-title"><i class="iconfont icon-time"> </i><span class="date">{$post.post_post_time_short}</span></div>
+        <div class="min-title">
+            <i class="iconfont icon-time"> </i><span class="date">{$post.post_post_time_short}</span>
+        </div>
+        <hr/>
+
+
         <div class="main-body">{$post.post_content}</div>
 
         <div id="cyReward" role="cylabs" data-use="reward" style="padding-top: 3rem"></div>
@@ -21,7 +26,6 @@
         <script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
         <script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyua9h4OO"></script>
     </div>
-
 
 {/block}
 

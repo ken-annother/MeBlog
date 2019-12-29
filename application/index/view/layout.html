@@ -2,7 +2,16 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <title>Sunking博客</title>
+    <title>{php}
+        if(isset($post)){
+            echo $post['post_title'];
+        }elseif(isset($cate_name)){
+            echo $cate_name;
+        }else{
+            echo "Sunking博客";
+        }
+     {/php}</title>
+
     <meta name="keywords" content="Sunking,nicekun,技术，android, 个人网站博客"/>
     <meta name="description" content="Sunking的个人博客网站，交流技术。"/>
     <!--移动设备优先-->
