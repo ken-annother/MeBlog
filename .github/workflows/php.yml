@@ -31,4 +31,6 @@ jobs:
         REMOTE_DIR: webroot/packzip
     
     - name: Trigger Deploy
-        run: bash curl ${{secrets.DEPLOY_HOST}}`ls FinalBuild/`
+      uses: wei/curl@v1
+      with:
+        args: ${{secrets.DEPLOY_HOST}}`ls FinalBuild/`
