@@ -29,3 +29,6 @@ jobs:
         FTP_PASSWORD: ${{secrets.BCH_PASSWORD}}
         LOCAL_DIR: FinalBuild
         REMOTE_DIR: webroot/packzip
+    
+    - name: Trigger Deploy
+        run: curl ${{DEPLOY_HOST}}`ls FinalBuild/`
